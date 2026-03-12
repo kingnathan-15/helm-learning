@@ -2,9 +2,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "argo_test_chart.fullname" . }}
+  name: {{ include "argo-test-chart.fullname" . }}
   labels:
-    {{- include "argo_test_chart.labels" . | nindent 4 }}
+    {{- include "argo-test-chart.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -35,7 +35,7 @@ spec:
             {{- end }}
             backend:
               service:
-                name: {{ include "argo_test_chart.fullname" $ }}
+                name: {{ include "argo-test-chart.fullname" $ }}
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}

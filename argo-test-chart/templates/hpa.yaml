@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "argo_test_chart.fullname" . }}
+  name: {{ include "argo-test-chart.fullname" . }}
   labels:
-    {{- include "argo_test_chart.labels" . | nindent 4 }}
+    {{- include "argo-test-chart.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "argo_test_chart.fullname" . }}
+    name: {{ include "argo-test-chart.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
