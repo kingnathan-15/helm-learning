@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-notifications-controller
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-notifications-controller
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: argocd-notifications-controller
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      securityContext:
+        runAsNonRoot: true
+      containers:
+      - name: argocd-notifications-controller
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command:
+        - /app/argocd-notifications-backend
+        - controller
+        workingDir: /app
+        volumeMounts:
+        - mountPath: /app/config/tls
+          name: tls-certs
+      volumes:
+      - name: tls-certs
+        configMap:
+          name: argocd-tls-certs-cm

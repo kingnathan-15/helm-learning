@@ -1,0 +1,32 @@
+# Default values for argocd-notifications.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+replicaCount: 1
+
+image:
+  repository: argoprojlabs/argocd-notifications
+  pullPolicy: Always
+  tag: "v1.0.2"
+
+serviceAccount:
+  name: argocd-notifications-controller
+
+labels:
+  app.kubernetes.io/name: argocd-notifications-controller
+
+service:
+  name: argocd-notifications-controller-metrics
+  port: 9001
+
+email:
+  host: "smtp.gmail.com"
+  port: "587"
+  gmailuser: "sil566794@gmail.com"
+  recipients:
+    email1: nathanwagacha@gmail.com
+    email2: agkigondu@gmail.com
+
+tlsCerts:
+  configMapName: argocd-notifications-tls

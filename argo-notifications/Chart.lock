@@ -1,0 +1,6 @@
+dependencies:
+- name: argocd-notifications
+  repository: https://argoproj.github.io/argo-helm
+  version: 1.0.9
+digest: sha256:aa8c2cd44e863354e5d1ab209630f63d888c5defd9bfa3b8674f65a230a09b70
+generated: "2026-03-13T11:41:21.14191554+03:00"
